@@ -2,13 +2,13 @@
 
 Vue3 共享组件库
 
-## 安装
+## 📦 安装
 
 ```bash
 npm install @tourmindai/components
 ```
 
-## 使用方法
+## 🚀 快速开始
 
 ### 1. 全局引入（推荐）
 
@@ -64,7 +64,8 @@ app.mount("#app");
 </template>
 
 <script setup>
-import { MyButton, TmSplitter, TmSplitterPanel } from "@tourmindai/components";
+// 如果使用按需引入，需要在这里导入组件
+// import { MyButton, TmSplitter, TmSplitterPanel } from '@tourmindai/components'
 
 const handleClick = () => {
   console.log("按钮被点击了");
@@ -72,26 +73,7 @@ const handleClick = () => {
 </script>
 ```
 
-### 4. 在 SFC 中直接使用（如果已全局注册）
-
-```vue
-<template>
-  <div>
-    <MyButton label="全局注册的按钮" variant="secondary" />
-
-    <TmSplitter layout="vertical">
-      <TmSplitterPanel size="50%">
-        <div>上方面板</div>
-      </TmSplitterPanel>
-      <TmSplitterPanel size="50%">
-        <div>下方面板</div>
-      </TmSplitterPanel>
-    </TmSplitter>
-  </div>
-</template>
-```
-
-## 组件说明
+## 📋 组件文档
 
 ### MyButton 按钮组件
 
@@ -165,7 +147,9 @@ const handleClick = () => {
 
 - `update:size`: 尺寸更新时触发
 
-## Vite 配置示例
+## 🛠️ 配置说明
+
+### Vite 配置
 
 如果你使用 Vite，可以在 `vite.config.js` 中配置：
 
@@ -181,25 +165,71 @@ export default defineConfig({
 });
 ```
 
-## 注意事项
+### 项目结构
 
-1. 确保你的项目使用 Vue 3.x 版本
-2. 组件库的样式文件需要单独引入：`import '@tourmindai/components/style'`
-3. 如果遇到样式问题，请检查是否正确引入了样式文件
-4. 组件库使用 Vue 3 的 Composition API 开发，确保你的项目支持
+```
+@tourmindai/components/
+├── dist/                    # 构建输出目录
+│   ├── tourmindai-components.es.js    # ES 模块
+│   ├── tourmindai-components.umd.js   # UMD 模块
+│   └── style.css            # 样式文件
+├── src/
+│   ├── components/          # 组件源码
+│   │   ├── Button.vue       # 按钮组件
+│   │   └── TmSplitter/      # 分割器组件
+│   ├── styles/              # 样式文件
+│   └── index.js             # 入口文件
+└── package.json
+```
 
-## 开发
+## 📦 构建输出
+
+组件库提供以下构建输出：
+
+- **ES 模块**: `dist/tourmindai-components.es.js` - 支持 Tree Shaking
+- **UMD 模块**: `dist/tourmindai-components.umd.js` - 通用模块定义
+- **样式文件**: `dist/style.css` - 组件样式
+
+## ⚠️ 注意事项
+
+1. **Vue 版本**: 确保你的项目使用 Vue 3.x 版本
+2. **样式引入**: 组件库的样式文件需要单独引入：`import '@tourmindai/components/style'`
+3. **Composition API**: 组件库使用 Vue 3 的 Composition API 开发
+4. **浏览器兼容性**: 支持现代浏览器，不支持 IE
+
+## 🔧 开发
 
 ```bash
 # 安装依赖
 npm install
 
-# 开发模式
+# 开发模式（启动演示页面）
 npm run dev
 
 # 构建库
 npm run build
 
-# 监听构建
+# 监听构建（开发时使用）
 npm run dev:lib
 ```
+
+## 📝 更新日志
+
+### v1.0.6
+
+- 修复构建配置问题
+- 优化组件导出结构
+- 完善文档说明
+
+### v1.0.0
+
+- 初始版本发布
+- 包含 MyButton 和 TmSplitter 组件
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 📄 许可证
+
+MIT License

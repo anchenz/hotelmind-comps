@@ -1,7 +1,6 @@
 <!-- src/views/App.vue -->
 <template>
   <div class="app-container">
-    <h1 class="app-title">组件测试页面</h1>
     <div class="app-layout">
       <!-- 左侧侧边栏 -->
       <div class="sidebar">
@@ -32,13 +31,6 @@
   padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-}
-
-.app-title {
-  margin-bottom: 20px;
-  color: var(--text-primary, #333);
-  font-size: 24px;
-  font-weight: 600;
 }
 
 .app-layout {
