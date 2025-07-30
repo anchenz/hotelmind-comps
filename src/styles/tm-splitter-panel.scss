@@ -1,0 +1,12 @@
+.tm-splitter-panel {
+  position: relative;
+  overflow: auto;
+
+  &[data-resizable="false"] {
+    /* 不可调整大小的面板样式 */
+  }
+
+  &[data-collapsible="true"] {
+    /* 可折叠面板样式 */
+  }
+}

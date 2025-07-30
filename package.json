@@ -1,0 +1,41 @@
+{
+  "name": "@tourmindai/components",
+  "version": "1.0.7",
+  "description": "Vue3共享组件库",
+  "main": "dist/tourmindai-components.umd.js",
+  "module": "dist/tourmindai-components.es.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/tourmindai-components.es.js",
+      "require": "./dist/tourmindai-components.umd.js"
+    },
+    "./es": "./dist/tourmindai-components.es.js",
+    "./lib": "./dist/tourmindai-components.umd.js",
+    "./style": "./dist/style.css",
+    "./style/*": "./dist/style/*"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "dev:lib": "vite build --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "sass": "^1.69.5",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.9",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.0"
+  },
+  "dependencies": {
+    "pinia": "^3.0.1"
+  }
+}
