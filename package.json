@@ -1,6 +1,6 @@
 {
   "name": "@tourmindai/components",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "TourmindAI Components",
   "main": "dist/tourmindai-components.umd.js",
   "module": "dist/tourmindai-components.es.js",
