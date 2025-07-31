@@ -61,6 +61,7 @@
   // --bg-body: var(--gray-50); // 页面背景
   --bg-body: #fff;
   --bg-body-rgb: 250, 250, 250; // 页面背景RGB值
+  --bg-body-secondary: var(--gray-100); // 次级背景色
   --bg-surface: var(--white); // 组件背景
   --bg-overlay: var(--white); // 浮层背景
   --bg-active: var(--primary-100);
@@ -70,10 +71,17 @@
   // 边框颜色体系
   --border-primary: rgba(0, 0, 0, 0.12); // 主边框
   --border-secondary: rgba(0, 0, 0, 0.08); // 弱化边框
+  --border-color-split: #f0f0f0; // 分割线颜色
 
   // 特殊效果
   --divider-color: rgba(0, 0, 0, 0.12); // 分割线
   --overlay-opacity: 0.5; // 遮罩透明度
+
+  // 交互状态
+  --item-hover-bg: rgba(0, 0, 0, 0.04); // 悬浮背景
+  --primary-color: var(--primary-500); // 主色
+  --primary-color-hover: var(--primary-700); // 主色悬浮
+  --primary-color-active: var(--primary-700); // 主色激活
 
   // 日历颜色变量
   --calendar-grey-bg-primary: #f5f5f5;
@@ -122,7 +130,7 @@
 }
 
 // ================== 深色主题覆盖 ==================
-[data-theme='dark'] {
+[data-theme="dark"] {
   // 中性色反转
   --white: #000000;
   --gray-20: #121212;
@@ -144,18 +152,27 @@
   // --bg-body: #121212; // Material Dark mode基准
   --bg-body: #000000;
   --bg-body-rgb: 18, 18, 18; // 深色背景RGB值
+  --bg-body-secondary: #1a1a1a; // 次级背景色
   --bg-surface: #1e1e1e; // 卡片背景
   --bg-overlay: #2d2d2d; // 弹窗背景
   --bg-active: var(--primary-500);
   --bg-card-hover: #102a56;
   --bg-mask: rgba(255, 255, 255, 0.1);
+
   // 边框颜色体系
   --border-primary: rgba(255, 255, 255, 0.12);
   --border-secondary: rgba(255, 255, 255, 0.08);
+  --border-color-split: #303030; // 分割线颜色
 
   // 特殊效果
   --divider-color: rgba(255, 255, 255, 0.12);
   --overlay-opacity: 0.8;
+
+  // 交互状态
+  --item-hover-bg: rgba(255, 255, 255, 0.08); // 悬浮背景
+  --primary-color: var(--primary-500); // 主色
+  --primary-color-hover: var(--primary-700); // 主色悬浮
+  --primary-color-active: var(--primary-700); // 主色激活
 
   // 阴影调整（深色模式需要更明显阴影）
   --box-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -221,18 +238,8 @@ body {
   color: var(--text-primary);
   background: var(--bg-body);
   line-height: 1.6;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   font-size: 16px;
   text-rendering: optimizeLegibility;
