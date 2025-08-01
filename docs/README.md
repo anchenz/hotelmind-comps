@@ -1,12 +1,11 @@
 # @tourmindai/components 完整文档
 
-Vue3 共享组件库
+TourmindAI 组件库 - 基于 Vue 3 的现代化组件库
 
 ## 📋 目录
 
 - [安装](#📦-安装)
 - [快速开始](#🚀-快速开始)
-- [样式引入指南](#🎨-样式引入指南)
 - [组件文档](#📋-组件文档)
 - [主题定制](#🎯-主题定制)
 - [配置说明](#🛠️-配置说明)
@@ -23,51 +22,35 @@ npm install @tourmindai/components
 
 ## 🚀 快速开始
 
-### 1. 全局引入（推荐小项目）
+### 1. 引入主题变量（必须）
+
+**⚠️ 重要：** 在使用任何组件前，必须先引入主题变量：
+
+```javascript
+// main.js
+import "@tourmindai/components/theme";
+```
+
+### 2. 全局引入（推荐）
 
 ```javascript
 // main.js
 import { createApp } from "vue";
 import App from "./App.vue";
 import TourmindComponents from "@tourmindai/components";
-import "@tourmindai/components/style"; // 引入所有样式
+import "@tourmindai/components/theme"; // 主题变量
 
 const app = createApp(App);
-app.use(TourmindComponents);
+app.use(TourmindComponents); // 组件自动包含样式
 app.mount("#app");
 ```
 
-### 2. 按需引入组件 + 全量样式
+### 3. 按需引入
 
 ```javascript
-// main.js
-import { createApp } from "vue";
-import App from "./App.vue";
+// main.js 或组件文件
+import "@tourmindai/components/theme"; // 主题变量（全局引入一次即可）
 import { MyButton, TmSplitter, TmSplitterPanel } from "@tourmindai/components";
-import "@tourmindai/components/style"; // 引入所有样式
-
-const app = createApp(App);
-
-// 注册单个组件
-app.component("MyButton", MyButton);
-app.component("TmSplitter", TmSplitter);
-app.component("TmSplitterPanel", TmSplitterPanel);
-
-app.mount("#app");
-```
-
-### 3. 按需引入组件 + 按需引入样式（推荐大项目）
-
-```javascript
-// main.js
-import { createApp } from "vue";
-import App from "./App.vue";
-import { MyButton, TmSplitter, TmSplitterPanel } from "@tourmindai/components";
-
-// 按需引入样式 - 更小的打包体积
-import "@tourmindai/components/styles/theme"; // 主题变量（必需）
-import "@tourmindai/components/styles/button"; // Button组件样式
-import "@tourmindai/components/styles/tm-splitter"; // TmSplitter组件样式
 
 const app = createApp(App);
 app.component("MyButton", MyButton);
@@ -75,48 +58,6 @@ app.component("TmSplitter", TmSplitter);
 app.component("TmSplitterPanel", TmSplitterPanel);
 app.mount("#app");
 ```
-
-## 🎨 样式引入指南
-
-### 样式引入方式对比
-
-| 引入方式   | 文件大小 | 适用场景       | 示例                                         |
-| ---------- | -------- | -------------- | -------------------------------------------- |
-| 全量引入   | ~6.5KB   | 使用多个组件   | `import '@tourmindai/components/style'`      |
-| 新全量引入 | ~6.5KB   | 使用多个组件   | `import '@tourmindai/components/styles/all'` |
-| 按需引入   | 按需计算 | 只使用部分组件 | 见下方示例                                   |
-
-### 按需引入样式示例
-
-#### 只使用 Button 组件
-
-```javascript
-import "@tourmindai/components/styles/theme"; // 4.7KB - 主题变量
-import "@tourmindai/components/styles/button"; // 0.3KB - Button样式
-// 总计: ~5KB (比全量少 1.5KB)
-```
-
-#### 只使用 TmSplitter 组件
-
-```javascript
-import "@tourmindai/components/styles/theme"; // 4.7KB - 主题变量
-import "@tourmindai/components/styles/tm-splitter"; // 1.5KB - Splitter样式
-// 总计: ~6.2KB
-```
-
-#### 只需要主题变量进行自定义
-
-```javascript
-import "@tourmindai/components/styles/theme"; // 4.7KB - 仅主题变量
-```
-
-### 🔥 性能优化建议
-
-- **小项目**（< 3 个组件）：使用全量引入
-- **大项目**（≥ 3 个组件）：使用按需引入
-- **自定义主题**：先引入 `theme`，再按需引入组件样式
-
-详细的样式使用指南请查看：[样式按需引入指南](./STYLE-USAGE.md)
 
 ### 4. 在组件中使用
 
@@ -127,11 +68,11 @@ import "@tourmindai/components/styles/theme"; // 4.7KB - 仅主题变量
     <MyButton label="点击我" variant="primary" @click="handleClick" />
 
     <!-- 分割器组件 -->
-    <TmSplitter layout="horizontal" :initial-sizes="['200px', '300px']">
-      <TmSplitterPanel size="200px">
+    <TmSplitter layout="horizontal" :initial-sizes="['30%', '70%']">
+      <TmSplitterPanel>
         <div>左侧面板</div>
       </TmSplitterPanel>
-      <TmSplitterPanel size="300px">
+      <TmSplitterPanel>
         <div>右侧面板</div>
       </TmSplitterPanel>
     </TmSplitter>
@@ -139,8 +80,8 @@ import "@tourmindai/components/styles/theme"; // 4.7KB - 仅主题变量
 </template>
 
 <script setup>
-// 如果使用按需引入，需要在这里导入组件
-// import { MyButton, TmSplitter, TmSplitterPanel } from '@tourmindai/components'
+// 如果使用按需引入，可以在这里导入组件
+import { MyButton, TmSplitter, TmSplitterPanel } from "@tourmindai/components";
 
 const handleClick = () => {
   console.log("按钮被点击了");
@@ -170,15 +111,15 @@ const handleClick = () => {
 ```vue
 <TmSplitter
   layout="horizontal"
-  :initial-sizes="['200px', '300px']"
+  :initial-sizes="['30%', '70%']"
   @resize-start="onResizeStart"
   @resize="onResize"
   @resize-end="onResizeEnd"
 >
-  <TmSplitterPanel size="200px">
+  <TmSplitterPanel>
     <!-- 面板内容 -->
   </TmSplitterPanel>
-  <TmSplitterPanel size="300px">
+  <TmSplitterPanel>
     <!-- 面板内容 -->
   </TmSplitterPanel>
 </TmSplitter>
@@ -198,48 +139,55 @@ const handleClick = () => {
 ### TmSplitterPanel 分割器面板组件
 
 ```vue
-<TmSplitterPanel
-  size="200px"
-  min="100px"
-  max="500px"
-  :resizable="true"
-  :collapsible="false"
-  @update:size="onSizeUpdate"
->
+<TmSplitterPanel min="100px" max="500px" :resizable="true" :collapsible="false">
   <!-- 面板内容 -->
 </TmSplitterPanel>
 ```
 
 **Props:**
 
-- `size` (String|Number): 面板大小，支持像素值或百分比，默认 "50%"
 - `min` (String|Number): 最小尺寸
 - `max` (String|Number): 最大尺寸
 - `resizable` (Boolean): 是否可调整大小，默认 `true`
 - `collapsible` (Boolean): 是否可折叠，默认 `false`
 
-**Events:**
-
-- `update:size`: 尺寸更新时触发
-
 ## 🎯 主题定制
 
-组件库使用 CSS Variables，支持深色模式和主题定制：
+### 使用自定义主题
+
+你可以使用自定义主题替换默认主题：
+
+```javascript
+// 不引入默认主题
+// import "@tourmindai/components/theme"; ❌
+
+// 引入自定义主题（需要提供相同的CSS变量）
+import "./my-custom-theme.css"; ✅
+
+import { TmSplitter } from "@tourmindai/components";
+```
+
+### 自定义主题变量
 
 ```css
-/* 自定义主题变量 */
+/* my-custom-theme.css */
 :root {
   --primary-500: #your-brand-color;
   --border-radius-base: 8px;
+  --bg-surface: #ffffff;
+  --text-primary: rgba(0, 0, 0, 0.87);
+  /* 提供所有必需的CSS变量 */
 }
 
 /* 深色模式定制 */
 [data-theme="dark"] {
   --primary-500: #your-dark-mode-color;
+  --bg-surface: #1e1e1e;
+  --text-primary: rgba(255, 255, 255, 0.87);
 }
 ```
 
-切换深色模式：
+### 切换深色模式
 
 ```javascript
 // 切换到深色模式
@@ -252,8 +200,6 @@ document.documentElement.removeAttribute("data-theme");
 ## 🛠️ 配置说明
 
 ### Vite 配置
-
-如果你使用 Vite，可以在 `vite.config.js` 中配置：
 
 ```javascript
 import { defineConfig } from "vite";
@@ -275,23 +221,17 @@ export default defineConfig({
 │   ├── tourmindai-components.es.js    # ES 模块
 │   ├── tourmindai-components.umd.js   # UMD 模块
 │   ├── style.css            # 完整样式文件（兼容）
-│   └── styles/              # 按需引入样式
+│   └── styles/              # 样式文件
 │       ├── all.css          # 全量样式
-│       ├── theme.css        # 主题变量
-│       ├── button.css       # Button组件样式
-│       └── tm-splitter.css  # TmSplitter组件样式
+│       └── theme.css        # 主题变量
 ├── src/
 │   ├── components/          # 组件源码
-│   │   ├── Button.vue       # 按钮组件
-│   │   └── TmSplitter/      # 分割器组件
 │   ├── styles/              # 样式文件
 │   └── index.js             # 入口文件
 └── package.json
 ```
 
 ## 📦 构建输出
-
-组件库提供以下构建输出：
 
 ### JavaScript 模块
 
@@ -300,22 +240,17 @@ export default defineConfig({
 
 ### 样式文件
 
-- **完整样式**: `dist/style.css` - 包含所有组件样式（兼容旧版）
-- **按需样式**:
-  - `dist/styles/all.css` - 全量样式 (6.5KB)
-  - `dist/styles/theme.css` - 主题变量 (4.7KB)
-  - `dist/styles/button.css` - Button 样式 (0.3KB)
-  - `dist/styles/tm-splitter.css` - TmSplitter 样式 (1.5KB)
+- **主题变量**: `dist/styles/theme.css` - 必需的主题变量
+- **全量样式**: `dist/styles/all.css` - 所有组件样式（可选）
+- **兼容样式**: `dist/style.css` - 向后兼容的完整样式
 
 ## ⚠️ 注意事项
 
 1. **Vue 版本**: 确保你的项目使用 Vue 3.x 版本
-2. **样式引入**:
-   - 全量引入：`import '@tourmindai/components/style'`
-   - 按需引入：必须先引入 `theme`，再引入组件样式
-3. **Composition API**: 组件库使用 Vue 3 的 Composition API 开发
+2. **主题变量**: 使用组件前必须先引入 `@tourmindai/components/theme`
+3. **样式集成**: 组件引入时会自动包含对应样式，无需额外引入
 4. **浏览器兼容性**: 支持现代浏览器，不支持 IE
-5. **主题变量**: 按需引入时，`theme` 样式是必需的
+5. **自定义主题**: 如果使用自定义主题，需要提供所有必需的 CSS 变量
 
 ## 🔧 开发
 
@@ -340,19 +275,40 @@ npm run dev:lib
 
 ## 📝 更新日志
 
+### v1.0.12 ✨ 全新样式集成
+
+**🎉 重大更新：样式自动集成**
+
+- ✨ **样式集成**: 组件引入时自动包含样式，无需手动引入
+- 🎨 **主题分离**: 主题变量独立导出，支持自定义主题
+- 📦 **简化使用**: 用户只需引入 theme + 组件即可
+- 🗑️ **移除**: 不再单独导出组件样式文件
+- 📝 **文档更新**: 全新的使用方式说明
+
+**⚠️ 破坏性变更:**
+
+- 移除了单独的组件样式导出：`./styles/button`, `./styles/tm-splitter`
+- 用户必须先引入 `@tourmindai/components/theme`
+
+**🔄 迁移指南:**
+
+```javascript
+// 旧版本（v1.0.11及以下）
+import "@tourmindai/components/styles/theme";
+import "@tourmindai/components/styles/button";
+import { MyButton } from "@tourmindai/components";
+
+// 新版本（v1.0.12+）
+import "@tourmindai/components/theme";
+import { MyButton } from "@tourmindai/components"; // 样式自动包含
+```
+
 ### v1.0.11
 
 - ✨ 新增样式按需引入功能
 - ✨ 独立导出主题变量文件
 - ✨ 支持更细粒度的样式控制
 - 📦 优化打包体积，支持更好的性能优化
-- 📚 完善文档和使用指南
-
-### v1.0.6
-
-- 修复构建配置问题
-- 优化组件导出结构
-- 完善文档说明
 
 ### v1.0.0
 

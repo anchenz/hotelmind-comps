@@ -1,5 +1,6 @@
 // 导入组件
 import TmSplitter from "./index.vue";
+import "./style.js";
 
 // 安装函数
 TmSplitter.install = function (app) {

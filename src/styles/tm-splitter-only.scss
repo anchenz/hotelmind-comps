@@ -16,13 +16,13 @@
   }
 }
 
-:deep(.tm-splitter-panel) {
+.tm-splitter-panel {
   position: relative;
   overflow: auto;
   flex-shrink: 0;
 }
 
-:deep(.tm-splitter-divider) {
+.tm-splitter-divider {
   position: relative;
   background-color: var(--bg-surface);
   z-index: 1;
@@ -30,25 +30,25 @@
   flex-shrink: 0;
 }
 
-:deep(.tm-splitter-divider:hover) {
+.tm-splitter-divider:hover {
   // background-color: var(--primary-500);
 }
 
-:deep(.tm-splitter-divider--disabled) {
+.tm-splitter-divider--disabled {
   cursor: not-allowed;
   background-color: var(--border-primary);
 }
 
-:deep(.tm-splitter-divider--disabled:hover) {
+.tm-splitter-divider--disabled:hover {
   background-color: var(--border-primary);
 }
 
-:deep(.tm-splitter-divider--dragging) {
+.tm-splitter-divider--dragging {
   background-color: var(--primary-500);
 }
 
 /* 水平布局的分割线 */
-.tm-splitter--horizontal :deep(.tm-splitter-divider) {
+.tm-splitter--horizontal .tm-splitter-divider {
   width: 8px;
   height: 100%;
   cursor: e-resize;
@@ -57,21 +57,20 @@
   justify-content: center;
 }
 
-.tm-splitter--horizontal :deep(.tm-splitter-divider-line) {
+.tm-splitter--horizontal .tm-splitter-divider-line {
   width: 1px;
   height: 100%;
   background-color: var(--border-primary);
   transition: all 0.2s ease;
 }
 
-.tm-splitter--horizontal
-  :deep(.tm-splitter-divider:hover .tm-splitter-divider-line) {
+.tm-splitter--horizontal .tm-splitter-divider:hover .tm-splitter-divider-line {
   width: 2px;
   background-color: var(--primary-500);
 }
 
 /* 垂直布局的分割线 */
-.tm-splitter--vertical :deep(.tm-splitter-divider) {
+.tm-splitter--vertical .tm-splitter-divider {
   width: 100%;
   height: 8px;
   cursor: row-resize;
@@ -80,20 +79,14 @@
   justify-content: center;
 }
 
-.tm-splitter--vertical :deep(.tm-splitter-divider-line) {
+.tm-splitter--vertical .tm-splitter-divider-line {
   width: 100%;
   height: 1px;
   background-color: var(--border-primary);
   transition: all 0.2s ease;
 }
 
-.tm-splitter--vertical
-  :deep(.tm-splitter-divider:hover .tm-splitter-divider-line) {
+.tm-splitter--vertical .tm-splitter-divider:hover .tm-splitter-divider-line {
   height: 2px;
   background-color: var(--primary-500);
-}
-
-.tm-splitter-panel {
-  position: relative;
-  overflow: auto;
 }

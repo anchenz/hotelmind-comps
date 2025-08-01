@@ -1,6 +1,6 @@
 {
   "name": "@tourmindai/components",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "TourmindAI Components",
   "type": "module",
   "main": "dist/tourmindai-components.umd.js",
@@ -16,9 +16,8 @@
     "./style": "./dist/style.css",
     "./style/*": "./dist/style/*",
     "./styles/all": "./dist/styles/all.css",
-    "./styles/theme": "./dist/styles/theme.css",
-    "./styles/button": "./dist/styles/button.css",
-    "./styles/tm-splitter": "./dist/styles/tm-splitter.css"
+    "./theme": "./dist/styles/theme.css",
+    "./styles/theme": "./dist/styles/theme.css"
   },
   "files": [
     "dist"

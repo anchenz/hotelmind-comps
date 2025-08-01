@@ -13,7 +13,11 @@
 
 ```vue
 <template>
-  <TmSplitter layout="horizontal" :initial-sizes="splitterSizes" @resize="handleResize">
+  <TmSplitter
+    layout="horizontal"
+    :initial-sizes="splitterSizes"
+    @resize="handleResize"
+  >
     <TmSplitterPanel :size="splitterSizes[0]" min="300" resizable>
       <div>左侧面板内容</div>
     </TmSplitterPanel>
@@ -24,67 +28,67 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import TmSplitter from '@/components/base/TmSplitter/index.vue'
-import TmSplitterPanel from '@/components/base/TmSplitter/SplitterPanel.vue'
+import { ref, onMounted } from "vue";
+import TmSplitter from "@/components/base/TmSplitter/index.vue";
+import TmSplitterPanel from "@/components/base/TmSplitter/SplitterPanel.vue";
 
 // 分隔面板尺寸状态管理
-const STORAGE_KEY = 'my-splitter-sizes'
-const DEFAULT_SIZES = ['50%', '50%']
-const splitterSizes = ref([...DEFAULT_SIZES])
+const STORAGE_KEY = "my-splitter-sizes";
+const DEFAULT_SIZES = ["50%", "50%"];
+const splitterSizes = ref([...DEFAULT_SIZES]);
 
 // 从localStorage加载保存的尺寸
 function loadSplitterSizes() {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY)
+    const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
-      const parsedSizes = JSON.parse(saved)
+      const parsedSizes = JSON.parse(saved);
       if (Array.isArray(parsedSizes) && parsedSizes.length === 2) {
-        splitterSizes.value = parsedSizes
-        return
+        splitterSizes.value = parsedSizes;
+        return;
       }
     }
   } catch (error) {
-    console.warn('加载分隔面板尺寸失败:', error)
+    console.warn("加载分隔面板尺寸失败:", error);
   }
-  splitterSizes.value = [...DEFAULT_SIZES]
+  splitterSizes.value = [...DEFAULT_SIZES];
 }
 
 // 保存尺寸到localStorage
 function saveSplitterSizes(sizes) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(sizes))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(sizes));
   } catch (error) {
-    console.warn('保存分隔面板尺寸失败:', error)
+    console.warn("保存分隔面板尺寸失败:", error);
   }
 }
 
 // 处理分隔面板尺寸变化
 function handleResize(index, sizes) {
-  const container = document.querySelector('.tm-splitter')
+  const container = document.querySelector(".tm-splitter");
   if (container) {
-    const containerWidth = container.offsetWidth
+    const containerWidth = container.offsetWidth;
     const percentageSizes = sizes.map((size) => {
-      if (typeof size === 'number') {
-        const percentage = ((size / containerWidth) * 100).toFixed(2)
-        return `${percentage}%`
+      if (typeof size === "number") {
+        const percentage = ((size / containerWidth) * 100).toFixed(2);
+        return `${percentage}%`;
       }
-      return size
-    })
+      return size;
+    });
 
-    splitterSizes.value = percentageSizes
+    splitterSizes.value = percentageSizes;
 
     // 防抖保存
-    clearTimeout(handleResize.timer)
+    clearTimeout(handleResize.timer);
     handleResize.timer = setTimeout(() => {
-      saveSplitterSizes(percentageSizes)
-    }, 300)
+      saveSplitterSizes(percentageSizes);
+    }, 300);
   }
 }
 
 onMounted(() => {
-  loadSplitterSizes()
-})
+  loadSplitterSizes();
+});
 </script>
 ```
 

@@ -320,6 +320,97 @@ defineExpose({
 });
 </script>
 
-<style lang="scss" scoped>
-@use "../../styles/tm-splitter.scss";
+<style lang="scss">
+// 注意：此样式依赖主题变量，用户需要先引入theme
+// import "@tourmindai/components/theme"
+
+.tm-splitter {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  &--horizontal {
+    flex-direction: row;
+  }
+
+  &--vertical {
+    flex-direction: column;
+  }
+}
+
+.tm-splitter-panel {
+  position: relative;
+  overflow: auto;
+  flex-shrink: 0;
+}
+
+.tm-splitter-divider {
+  position: relative;
+  background-color: var(--bg-surface);
+  z-index: 1;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.tm-splitter-divider:hover {
+  // background-color: var(--primary-500);
+}
+
+.tm-splitter-divider--disabled {
+  cursor: not-allowed;
+  background-color: var(--border-primary);
+}
+
+.tm-splitter-divider--disabled:hover {
+  background-color: var(--border-primary);
+}
+
+.tm-splitter-divider--dragging {
+  background-color: var(--primary-500);
+}
+
+/* 水平布局的分割线 */
+.tm-splitter--horizontal .tm-splitter-divider {
+  width: 8px;
+  height: 100%;
+  cursor: e-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tm-splitter--horizontal .tm-splitter-divider-line {
+  width: 1px;
+  height: 100%;
+  background-color: var(--border-primary);
+  transition: all 0.2s ease;
+}
+
+.tm-splitter--horizontal .tm-splitter-divider:hover .tm-splitter-divider-line {
+  width: 2px;
+  background-color: var(--primary-500);
+}
+
+/* 垂直布局的分割线 */
+.tm-splitter--vertical .tm-splitter-divider {
+  width: 100%;
+  height: 8px;
+  cursor: row-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tm-splitter--vertical .tm-splitter-divider-line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-primary);
+  transition: all 0.2s ease;
+}
+
+.tm-splitter--vertical .tm-splitter-divider:hover .tm-splitter-divider-line {
+  height: 2px;
+  background-color: var(--primary-500);
+}
 </style>

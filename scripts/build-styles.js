@@ -25,20 +25,7 @@ async function buildStylesIndividually() {
     {
       name: "theme",
       entry: resolve(__dirname, "../src/entries/theme.js"),
-      description: "主题样式",
-    },
-    {
-      name: "button",
-      entry: resolve(__dirname, "../src/components/Button/style-standalone.js"),
-      description: "Button组件样式",
-    },
-    {
-      name: "tm-splitter",
-      entry: resolve(
-        __dirname,
-        "../src/components/TmSplitter/style-standalone.js"
-      ),
-      description: "TmSplitter组件样式",
+      description: "主题变量样式",
     },
   ];
 
