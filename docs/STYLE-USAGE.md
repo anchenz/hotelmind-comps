@@ -28,41 +28,59 @@
 
 ## 新版本使用方式 (v1.0.12+)
 
-### 1. 基本使用
+### 方式对比
+
+| 方式               | 引入文件                   | 大小             | 适用场景                 |
+| ------------------ | -------------------------- | ---------------- | ------------------------ |
+| **新架构（推荐）** | `theme.css` + 组件自带样式 | ~4.67 kB         | 现代化开发，样式自动集成 |
+| **一次性引入**     | `styles/all.css`           | 6.47 kB          | 简单项目，传统引入方式   |
+| **向后兼容**       | `style.css` + 自定义主题   | 2.58 kB + 自定义 | 高度定制化，完全控制主题 |
+
+### 1. 新架构方式（推荐）
 
 ```javascript
 // 第1步：引入主题变量（必须）
-import "@tourmindai/components/theme";
+import "@tourmindai/components/theme"; // 4.67 kB
 
 // 第2步：引入组件（样式自动包含）
 import { TmSplitter, MyButton } from "@tourmindai/components";
 ```
 
-### 2. 全局引入
+**优点**：
+
+- 🎯 样式自动集成，无需手动管理
+- 🎨 支持主题定制
+- 📦 按需加载，性能最佳
+
+### 2. 一次性引入方式
 
 ```javascript
-// main.js
-import { createApp } from "vue";
-import App from "./App.vue";
-
-// 引入主题
-import "@tourmindai/components/theme";
-
-// 引入组件库
-import Components from "@tourmindai/components";
-
-const app = createApp(App);
-app.use(Components); // 所有组件样式自动包含
-app.mount("#app");
+// 引入完整样式包
+import "@tourmindai/components/styles/all"; // 6.47 kB (主题变量+组件样式)
+import { TmSplitter, MyButton } from "@tourmindai/components";
 ```
 
-### 3. 按需引入
+**适用场景**：
+
+- 使用多个组件的简单项目
+- 不需要自定义主题
+- 偏好传统的 CSS 引入方式
+
+### 3. 向后兼容方式
 
 ```javascript
-// 任意组件文件
-import "@tourmindai/components/theme"; // 全局引入一次即可
-import { TmSplitter } from "@tourmindai/components";
+// 只引入组件样式
+import "@tourmindai/components/style"; // 2.58 kB (仅组件样式)
+// 用户自己提供主题变量
+import "./my-complete-theme.css";
+import { TmSplitter, MyButton } from "@tourmindai/components";
 ```
+
+**适用场景**：
+
+- 完全自定义主题
+- 与现有设计系统集成
+- 精确控制样式大小
 
 ## 主题定制
 

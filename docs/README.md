@@ -240,9 +240,28 @@ export default defineConfig({
 
 ### 样式文件
 
-- **主题变量**: `dist/styles/theme.css` - 必需的主题变量
-- **全量样式**: `dist/styles/all.css` - 所有组件样式（可选）
-- **兼容样式**: `dist/style.css` - 向后兼容的完整样式
+| 文件                        | 大小    | 内容                | 使用场景                                  |
+| --------------------------- | ------- | ------------------- | ----------------------------------------- |
+| **`dist/styles/theme.css`** | 4.67 kB | 只有主题变量        | **新架构必需** - 使用组件前必须引入       |
+| **`dist/styles/all.css`**   | 6.47 kB | 主题变量 + 组件样式 | **一次性引入** - 完整样式包，适合简单项目 |
+| **`dist/style.css`**        | 2.58 kB | 只有组件样式        | **向后兼容** - 需配合外部主题变量使用     |
+
+### 使用方式对比
+
+```javascript
+// 方式1：新架构（推荐）- 总计 4.67 kB + 组件自带样式
+import "@tourmindai/components/theme";
+import { TmSplitter } from "@tourmindai/components";
+
+// 方式2：一次性引入 - 6.47 kB
+import "@tourmindai/components/styles/all";
+import { TmSplitter } from "@tourmindai/components";
+
+// 方式3：向后兼容 - 2.58 kB + 自定义主题
+import "@tourmindai/components/style";
+import "./my-theme.css"; // 用户需要自己提供主题变量
+import { TmSplitter } from "@tourmindai/components";
+```
 
 ## ⚠️ 注意事项
 
@@ -251,6 +270,7 @@ export default defineConfig({
 3. **样式集成**: 组件引入时会自动包含对应样式，无需额外引入
 4. **浏览器兼容性**: 支持现代浏览器，不支持 IE
 5. **自定义主题**: 如果使用自定义主题，需要提供所有必需的 CSS 变量
+6. **构建输出**: 推荐使用新架构方式，文件大小更小且更易维护
 
 ## 🔧 开发
 

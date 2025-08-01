@@ -41,7 +41,7 @@ async function buildStylesIndividually() {
           lib: {
             entry: style.entry,
             name: style.name,
-            fileName: () => `${style.name}.js`,
+            fileName: () => `${style.name}.js`, // 临时JS文件，稍后删除
             formats: ["es"],
           },
           rollupOptions: {
@@ -51,6 +51,13 @@ async function buildStylesIndividually() {
           },
         },
       });
+
+      // 删除不需要的JS文件
+      const jsFile = resolve(stylesDir, `${style.name}.js`);
+      if (fs.existsSync(jsFile)) {
+        fs.unlinkSync(jsFile);
+        console.log(`已删除不需要的JS文件: ${style.name}.js`);
+      }
 
       console.log(`✓ ${style.description} 构建完成`);
     } catch (error) {

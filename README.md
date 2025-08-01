@@ -61,6 +61,16 @@ import { TmSplitter, TmSplitterPanel, Button } from "@tourmindai/components";
 </template>
 ```
 
+### 4. 替代方案（一次性引入）
+
+如果你偏好传统的一次性引入方式：
+
+```javascript
+// 引入完整样式包（包含主题变量+组件样式）
+import "@tourmindai/components/styles/all"; // 6.47 kB
+import { TmSplitter } from "@tourmindai/components";
+```
+
 ## 主题定制
 
 你可以使用自定义主题替换默认主题：

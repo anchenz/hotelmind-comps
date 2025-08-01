@@ -71,6 +71,7 @@ export default defineConfig({
           rollupOptions: {
             external: ["vue"],
             output: {
+              exports: "named", // 修复导出警告
               globals: {
                 vue: "Vue",
               },

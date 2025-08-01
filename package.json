@@ -14,10 +14,8 @@
     "./es": "./dist/tourmindai-components.es.js",
     "./lib": "./dist/tourmindai-components.umd.js",
     "./style": "./dist/style.css",
-    "./style/*": "./dist/style/*",
     "./styles/all": "./dist/styles/all.css",
-    "./theme": "./dist/styles/theme.css",
-    "./styles/theme": "./dist/styles/theme.css"
+    "./theme": "./dist/styles/theme.css"
   },
   "files": [
     "dist"
