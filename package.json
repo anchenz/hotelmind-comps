@@ -1,7 +1,8 @@
 {
   "name": "@tourmindai/components",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "TourmindAI Components",
+  "type": "module",
   "main": "dist/tourmindai-components.umd.js",
   "module": "dist/tourmindai-components.es.js",
   "types": "dist/types/index.d.ts",
@@ -13,13 +14,21 @@
     "./es": "./dist/tourmindai-components.es.js",
     "./lib": "./dist/tourmindai-components.umd.js",
     "./style": "./dist/style.css",
-    "./style/*": "./dist/style/*"
+    "./style/*": "./dist/style/*",
+    "./styles/all": "./dist/styles/all.css",
+    "./styles/theme": "./dist/styles/theme.css",
+    "./styles/button": "./dist/styles/button.css",
+    "./styles/tm-splitter": "./dist/styles/tm-splitter.css"
   },
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && npm run build:styles",
+    "build:styles": "node scripts/build-styles.js",
     "dev": "vite",
     "dev:lib": "vite build --watch",
     "prepublishOnly": "npm run build"

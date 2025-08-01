@@ -1,6 +1,8 @@
 // src/index.js
 import MyButton from "./components/Button.vue";
-import "./styles/global.scss"; // 引入全局样式
+// 注意：样式文件已移除，请按需引入样式
+// 全量引入样式：import '@tourmindai/components/style'
+// 按需引入：import '@tourmindai/components/theme' + import '@tourmindai/components/button/style'
 import TmSplitter from "./components/TmSplitter/index.vue";
 import TmSplitterPanel from "./components/TmSplitter/SplitterPanel.vue";
 
