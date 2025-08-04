@@ -116,6 +116,6 @@ defineExpose({
 });
 </script>
 
-<style lang="scss" scoped>
-@use "../../styles/tm-splitter-panel.scss";
+<style lang="scss">
+@use "@/styles/tm-splitter-panel.scss";
 </style>
