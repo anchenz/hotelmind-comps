@@ -185,7 +185,7 @@
 <script setup>
 import { ref } from "vue";
 import TmSplitter from "../components/TmSplitter/index.vue";
-import SplitterPanel from "../components/TmSplitter/SplitterPanel.vue";
+import SplitterPanel from "../components/TmSplitterPanel/index.vue";
 
 // 事件日志
 const eventLog = ref([]);

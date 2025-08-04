@@ -30,7 +30,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import TmSplitter from "@/components/base/TmSplitter/index.vue";
-import TmSplitterPanel from "@/components/base/TmSplitter/SplitterPanel.vue";
+import TmSplitterPanel from "@/components/TmSplitterPanel/index.vue";
 
 // 分隔面板尺寸状态管理
 const STORAGE_KEY = "my-splitter-sizes";

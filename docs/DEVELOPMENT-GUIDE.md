@@ -337,7 +337,7 @@ background: #ffffff;
 ```javascript
 // src/index.js
 import TmSplitter from "./components/TmSplitter/index.vue";
-import TmSplitterPanel from "./components/TmSplitter/SplitterPanel.vue";
+import TmSplitterPanel from "./components/TmSplitterPanel/index.vue";
 import TmDatePicker from "./components/TmDatePicker/index.vue"; // 新增
 
 // 创建 install 方法

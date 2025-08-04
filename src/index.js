@@ -3,7 +3,7 @@
 // 全量引入样式：import '@tourmindai/components/style'
 // 按需引入：import '@tourmindai/components/theme' + import '@tourmindai/components/tm-splitter/style'
 import TmSplitter from "./components/TmSplitter/index.vue";
-import TmSplitterPanel from "./components/TmSplitter/SplitterPanel.vue";
+import TmSplitterPanel from "./components/TmSplitterPanel/index.vue";
 
 // 创建 install 方法
 const install = (app) => {

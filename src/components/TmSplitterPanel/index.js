@@ -1,5 +1,5 @@
 // 导入组件
-import TmSplitterPanel from "../SplitterPanel.vue";
+import TmSplitterPanel from "./index.vue";
 
 // 安装函数
 TmSplitterPanel.install = function (app) {

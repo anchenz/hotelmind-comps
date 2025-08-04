@@ -46,7 +46,7 @@ export default defineConfig({
   ...(isDev
     ? {
         // 开发模式配置
-        root: "src/views",
+        root: ".",
         server: {
           port: 3000,
         },

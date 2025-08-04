@@ -2,10 +2,10 @@
 import { createApp } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 import App from "./App.vue";
-// import "@tourmindai/components/styles/theme";
+import "@/styles/base/theme.scss";
 // 导入各种示例组件
-import SplitterDemo from "./TmSplitterDemo.vue";
-import Home from "./Home.vue";
+import SplitterDemo from "./src/views/TmSplitterDemo.vue";
+import Home from "./src/views/Home.vue";
 // 路由配置
 const routes = [
   { path: "/", component: Home },
