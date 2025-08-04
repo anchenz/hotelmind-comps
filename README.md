@@ -45,7 +45,7 @@ app.mount("#app");
 ```javascript
 // 组件文件
 import "@tourmindai/components/theme"; // 主题变量（全局引入一次即可）
-import { TmSplitter, TmSplitterPanel, Button } from "@tourmindai/components";
+import { TmSplitter, TmSplitterPanel } from "@tourmindai/components";
 ```
 
 ```vue
@@ -93,7 +93,6 @@ import { TmSplitter } from "@tourmindai/components";
   - 可拖拽调整面板大小
   - 支持最小/最大尺寸限制
 
-- **Button** - 按钮组件
   - 多种样式变体
   - 支持禁用状态
   - 自定义主题色

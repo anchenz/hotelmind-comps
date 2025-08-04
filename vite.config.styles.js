@@ -4,27 +4,29 @@ import { resolve } from "path";
 
 export default defineConfig({
   build: {
-    outDir: "dist/styles",
-    emptyOutDir: false, // 不清空目录，保留之前的构建文件
     lib: {
       entry: {
-        // 全量样式入口
-        all: resolve(__dirname, "src/entries/all-styles.js"),
-        // 主题文件独立入口
-        theme: resolve(__dirname, "src/entries/theme.js"),
-        // 各组件独立样式入口
-        button: resolve(__dirname, "src/components/Button/style-standalone.js"),
+        theme: resolve(__dirname, "src/styles/index.scss"),
         "tm-splitter": resolve(
           __dirname,
           "src/components/TmSplitter/style-standalone.js"
         ),
       },
-      formats: ["es"], // 只需要ES格式，因为这些主要是CSS
+      formats: ["es", "cjs"],
     },
     rollupOptions: {
+      external: ["vue"],
       output: {
-        entryFileNames: "[name].js",
-        assetFileNames: "[name].[ext]",
+        globals: {
+          vue: "Vue",
+        },
+        // 样式文件输出到 styles 目录
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name.endsWith(".css")) {
+            return "styles/[name].[ext]";
+          }
+          return "assets/[name].[ext]";
+        },
       },
     },
   },

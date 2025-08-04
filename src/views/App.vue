@@ -7,7 +7,6 @@
         <h3>组件导航</h3>
         <nav class="nav-menu">
           <router-link to="/" class="nav-item">首页</router-link>
-          <router-link to="/button" class="nav-item">按钮组件</router-link>
           <router-link to="/splitter" class="nav-item">分隔面板</router-link>
         </nav>
       </div>

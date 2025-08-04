@@ -9,20 +9,6 @@
     <div class="component-list">
       <h3 class="list-title">可用组件列表</h3>
       <div class="card-container">
-        <div class="component-card" @click="$router.push('/button')">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-              <path
-                d="M19 6H5a3 3 0 00-3 3v6a3 3 0 003 3h14a3 3 0 003-3V9a3 3 0 00-3-3zm1 9a1 1 0 01-1 1H5a1 1 0 01-1-1V9a1 1 0 011-1h14a1 1 0 011 1v6z"
-              ></path>
-            </svg>
-          </div>
-          <div class="card-content">
-            <h4>按钮组件</h4>
-            <p>基础按钮组件，支持多种样式和状态</p>
-          </div>
-        </div>
-
         <div class="component-card" @click="$router.push('/splitter')">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">

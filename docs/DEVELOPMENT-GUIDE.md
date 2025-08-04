@@ -325,7 +325,6 @@ background: #ffffff;
 ```scss
 @use "./base/index.scss";
 @use "./variables.scss";
-@use "./button.scss";
 @use "./tm-splitter.scss";
 @use "./tm-splitter-panel.scss";
 @use "./tm-date-picker.scss"; // 新增
@@ -337,14 +336,12 @@ background: #ffffff;
 
 ```javascript
 // src/index.js
-import MyButton from "./components/Button.vue";
 import TmSplitter from "./components/TmSplitter/index.vue";
 import TmSplitterPanel from "./components/TmSplitter/SplitterPanel.vue";
 import TmDatePicker from "./components/TmDatePicker/index.vue"; // 新增
 
 // 创建 install 方法
 const install = (app) => {
-  app.component("MyButton", MyButton);
   app.component("TmSplitter", TmSplitter);
   app.component("TmSplitterPanel", TmSplitterPanel);
   app.component("TmDatePicker", TmDatePicker); // 新增
@@ -352,7 +349,6 @@ const install = (app) => {
 
 // 所有组件列表
 const components = {
-  MyButton,
   TmSplitter,
   TmSplitterPanel,
   TmDatePicker, // 新增
@@ -360,7 +356,6 @@ const components = {
 
 // 导出单个组件
 export {
-  MyButton,
   TmSplitter,
   TmSplitterPanel,
   TmDatePicker, // 新增
@@ -390,11 +385,7 @@ const stylesToBuild = [
     entry: resolve(__dirname, "../src/entries/theme.js"),
     description: "主题样式",
   },
-  {
-    name: "button",
-    entry: resolve(__dirname, "../src/components/Button/style-standalone.js"),
-    description: "Button组件样式",
-  },
+
   {
     name: "tm-splitter",
     entry: resolve(
@@ -432,7 +423,7 @@ const stylesToBuild = [
     "./style/*": "./dist/style/*",
     "./styles/all": "./dist/styles/all.css",
     "./styles/theme": "./dist/styles/theme.css",
-    "./styles/button": "./dist/styles/button.css",
+
     "./styles/tm-splitter": "./dist/styles/tm-splitter.css",
     "./styles/tm-date-picker": "./dist/styles/tm-date-picker.css"
   }

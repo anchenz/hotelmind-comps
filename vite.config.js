@@ -31,7 +31,7 @@ function getComponentEntries() {
         entries[dir.toLowerCase()] = path.join(fullDir, "index.vue");
       }
     } else if (stats.isFile() && dir.endsWith(".vue")) {
-      // 单文件组件情况，如Button.vue
+      // 单文件组件情况
       const name = dir.replace(".vue", "").toLowerCase();
       entries[name] = path.join(componentsDir, dir);
     }

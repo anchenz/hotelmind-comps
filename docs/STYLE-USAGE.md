@@ -43,7 +43,7 @@
 import "@tourmindai/components/theme"; // 4.67 kB
 
 // 第2步：引入组件（样式自动包含）
-import { TmSplitter, MyButton } from "@tourmindai/components";
+import { TmSplitter } from "@tourmindai/components";
 ```
 
 **优点**：
@@ -57,7 +57,7 @@ import { TmSplitter, MyButton } from "@tourmindai/components";
 ```javascript
 // 引入完整样式包
 import "@tourmindai/components/styles/all"; // 6.47 kB (主题变量+组件样式)
-import { TmSplitter, MyButton } from "@tourmindai/components";
+import { TmSplitter } from "@tourmindai/components";
 ```
 
 **适用场景**：
@@ -73,7 +73,7 @@ import { TmSplitter, MyButton } from "@tourmindai/components";
 import "@tourmindai/components/style"; // 2.58 kB (仅组件样式)
 // 用户自己提供主题变量
 import "./my-complete-theme.css";
-import { TmSplitter, MyButton } from "@tourmindai/components";
+import { TmSplitter } from "@tourmindai/components";
 ```
 
 **适用场景**：
@@ -113,9 +113,6 @@ import { TmSplitter } from "@tourmindai/components";
   --text-primary: rgba(0, 0, 0, 0.87);
 
   /* 组件特定变量 */
-  --button-bg: var(--primary-500);
-  --button-text: #ffffff;
-  --button-hover: #1976d2;
 
   /* 更多变量... */
 }
@@ -223,9 +220,8 @@ app.mount("#app");
 ```javascript
 // 需要手动引入每个组件的样式
 import "@tourmindai/components/styles/theme";
-import "@tourmindai/components/styles/button";
 import "@tourmindai/components/styles/tm-splitter";
-import { MyButton, TmSplitter } from "@tourmindai/components";
+import { TmSplitter } from "@tourmindai/components";
 ```
 
 #### 新版本 (v1.0.12+)
@@ -233,7 +229,7 @@ import { MyButton, TmSplitter } from "@tourmindai/components";
 ```javascript
 // 只需引入主题，组件样式自动包含
 import "@tourmindai/components/theme";
-import { MyButton, TmSplitter } from "@tourmindai/components";
+import { TmSplitter } from "@tourmindai/components";
 ```
 
 ### 迁移步骤
@@ -242,7 +238,6 @@ import { MyButton, TmSplitter } from "@tourmindai/components";
 
    ```javascript
    // 删除这些行
-   import "@tourmindai/components/styles/button";
    import "@tourmindai/components/styles/tm-splitter";
    ```
 

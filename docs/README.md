@@ -50,10 +50,9 @@ app.mount("#app");
 ```javascript
 // main.js 或组件文件
 import "@tourmindai/components/theme"; // 主题变量（全局引入一次即可）
-import { MyButton, TmSplitter, TmSplitterPanel } from "@tourmindai/components";
+import { TmSplitter, TmSplitterPanel } from "@tourmindai/components";
 
 const app = createApp(App);
-app.component("MyButton", MyButton);
 app.component("TmSplitter", TmSplitter);
 app.component("TmSplitterPanel", TmSplitterPanel);
 app.mount("#app");
@@ -65,7 +64,6 @@ app.mount("#app");
 <template>
   <div>
     <!-- 按钮组件 -->
-    <MyButton label="点击我" variant="primary" @click="handleClick" />
 
     <!-- 分割器组件 -->
     <TmSplitter layout="horizontal" :initial-sizes="['30%', '70%']">
@@ -81,7 +79,7 @@ app.mount("#app");
 
 <script setup>
 // 如果使用按需引入，可以在这里导入组件
-import { MyButton, TmSplitter, TmSplitterPanel } from "@tourmindai/components";
+import { TmSplitter, TmSplitterPanel } from "@tourmindai/components";
 
 const handleClick = () => {
   console.log("按钮被点击了");
@@ -90,12 +88,6 @@ const handleClick = () => {
 ```
 
 ## 📋 组件文档
-
-### MyButton 按钮组件
-
-```vue
-<MyButton label="按钮文本" variant="primary" @click="handleClick" />
-```
 
 **Props:**
 
@@ -307,7 +299,7 @@ npm run dev:lib
 
 **⚠️ 破坏性变更:**
 
-- 移除了单独的组件样式导出：`./styles/button`, `./styles/tm-splitter`
+- 移除了单独的组件样式导出：`./styles/tm-splitter`
 - 用户必须先引入 `@tourmindai/components/theme`
 
 **🔄 迁移指南:**
@@ -315,12 +307,9 @@ npm run dev:lib
 ```javascript
 // 旧版本（v1.0.11及以下）
 import "@tourmindai/components/styles/theme";
-import "@tourmindai/components/styles/button";
-import { MyButton } from "@tourmindai/components";
 
 // 新版本（v1.0.12+）
 import "@tourmindai/components/theme";
-import { MyButton } from "@tourmindai/components"; // 样式自动包含
 ```
 
 ### v1.0.11
@@ -333,7 +322,7 @@ import { MyButton } from "@tourmindai/components"; // 样式自动包含
 ### v1.0.0
 
 - 初始版本发布
-- 包含 MyButton 和 TmSplitter 组件
+- 包含 TmSplitter 组件
 
 ## 🤝 贡献
 
