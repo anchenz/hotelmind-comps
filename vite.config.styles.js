@@ -6,11 +6,10 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
-        theme: resolve(__dirname, "src/styles/index.scss"),
-        "tm-splitter": resolve(
-          __dirname,
-          "src/components/TmSplitter/style-standalone.js"
-        ),
+        // 全局主题样式
+        theme: resolve(__dirname, "src/styles/base/theme.scss"),
+        // 所有组件样式合集
+        all: resolve(__dirname, "src/entries/all-styles.js"),
       },
       formats: ["es", "cjs"],
     },

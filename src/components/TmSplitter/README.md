@@ -29,7 +29,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import TmSplitter from "@/components/base/TmSplitter/index.vue";
+import TmSplitter from "@/components/TmSplitter/index.vue";
 import TmSplitterPanel from "@/components/TmSplitterPanel/index.vue";
 
 // 分隔面板尺寸状态管理

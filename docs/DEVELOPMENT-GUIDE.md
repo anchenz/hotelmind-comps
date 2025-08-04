@@ -62,7 +62,7 @@ mkdir src/components/TmDatePicker
 touch src/components/TmDatePicker/index.vue          # 主组件文件
 touch src/components/TmDatePicker/index.js           # 组件导出文件
 touch src/components/TmDatePicker/style.js           # 样式引入文件
-touch src/components/TmDatePicker/style-standalone.js # 独立样式文件
+touch src/components/TmDatePicker/style.js # 组件样式引用文件
 touch src/components/TmDatePicker/README.md          # 组件文档
 ```
 
@@ -161,12 +161,12 @@ export default TmDatePicker;
 import "../../styles/tm-date-picker.scss";
 ```
 
-#### `src/components/TmDatePicker/style-standalone.js`
+#### `src/components/TmDatePicker/style.js`
 
 ```javascript
-// 独立样式入口（不包含主题变量）
-// 注意：使用前需要先引入 @tourmindai/components/styles/theme
-import "../../styles/tm-date-picker-only.scss";
+// 组件样式引用（包含完整样式）
+// 组件现已自包含样式，无需单独引入主题
+import "../../styles/tm-date-picker.scss";
 ```
 
 ### 第 4 步: 创建样式文件
@@ -231,11 +231,10 @@ import "../../styles/tm-date-picker-only.scss";
 }
 ```
 
-#### `src/styles/tm-date-picker-only.scss` (纯净样式)
+#### `src/styles/tm-date-picker.scss` (完整样式)
 
 ```scss
-// 只包含组件样式，不包含主题变量
-// 注意：使用此文件前需要先引入主题变量
+// 包含组件完整样式和主题变量
 
 .tm-date-picker {
   position: relative;
@@ -295,8 +294,10 @@ import "../../styles/tm-date-picker-only.scss";
 
 ### 样式文件命名规范
 
-- 完整样式文件: `src/styles/组件名.scss` (例: `tm-date-picker.scss`)
-- 纯净样式文件: `src/styles/组件名-only.scss` (例: `tm-date-picker-only.scss`)
+- 组件样式文件: `src/styles/组件名.scss` (例: `tm-splitter.scss`)
+- 组件内样式引用: `src/components/组件名/style.js` (组件自包含样式)
+
+> **注意**: 从 2025 年 8 月开始，组件采用自包含样式方案，无需单独的-only.scss 和 style-standalone.js 文件
 
 ### 样式变量使用
 
@@ -324,7 +325,7 @@ background: #ffffff;
 
 ```scss
 @use "./base/index.scss";
-@use "./variables.scss";
+@use "./base/theme.scss";
 @use "./tm-splitter.scss";
 @use "./tm-splitter-panel.scss";
 @use "./tm-date-picker.scss"; // 新增
@@ -386,23 +387,8 @@ const stylesToBuild = [
     description: "主题样式",
   },
 
-  {
-    name: "tm-splitter",
-    entry: resolve(
-      __dirname,
-      "../src/components/TmSplitter/style-standalone.js"
-    ),
-    description: "TmSplitter组件样式",
-  },
-  // 新增
-  {
-    name: "tm-date-picker",
-    entry: resolve(
-      __dirname,
-      "../src/components/TmDatePicker/style-standalone.js"
-    ),
-    description: "TmDatePicker组件样式",
-  },
+  // 组件自包含样式，无需单独构建
+  // 各组件样式已通过 style.js 文件自动引入
 ];
 ```
 
@@ -422,10 +408,8 @@ const stylesToBuild = [
     "./style": "./dist/style.css",
     "./style/*": "./dist/style/*",
     "./styles/all": "./dist/styles/all.css",
-    "./styles/theme": "./dist/styles/theme.css",
-
-    "./styles/tm-splitter": "./dist/styles/tm-splitter.css",
-    "./styles/tm-date-picker": "./dist/styles/tm-date-picker.css"
+    "./theme": "./dist/styles/theme.css"
+    // 组件样式已自包含，无需单独导出
   }
 }
 ```
