@@ -6,8 +6,7 @@
  * @version 1.0.0
  */
 
-import { ref, watch, onMounted, onUnmounted, nextTick } from 'vue'
-import useThemeStore from '@/stores/theme'
+import { ref, watch, onMounted, onUnmounted, nextTick } from "vue";
 
 /**
  * 分隔面板持久化配置选项
@@ -28,19 +27,26 @@ import useThemeStore from '@/stores/theme'
  */
 export function useSplitterPersistence(options = {}) {
   // 解构配置选项，设置默认值
-  const { storageKey, defaultSizes = ['50%', '50%'], debounceDelay = 300, layout = 'horizontal', enableThemeWatch = true, enableConsoleLog = true, forceReapplyOnTheme = false } = options
+  const {
+    storageKey,
+    defaultSizes = ["50%", "50%"],
+    debounceDelay = 300,
+    layout = "horizontal",
+    enableThemeWatch = true,
+    enableConsoleLog = true,
+    forceReapplyOnTheme = false,
+  } = options;
 
   // 验证必需参数
   if (!storageKey) {
-    throw new Error('useSplitterPersistence: storageKey is required')
+    throw new Error("useSplitterPersistence: storageKey is required");
   }
 
   // 状态管理
-  const splitterSizes = ref([...defaultSizes])
-  const themeStore = enableThemeWatch ? useThemeStore() : null
+  const splitterSizes = ref([...defaultSizes]);
 
   // 防抖计时器
-  let debounceTimer = null
+  let debounceTimer = null;
 
   /**
    * 日志输出辅助函数
@@ -70,35 +76,49 @@ export function useSplitterPersistence(options = {}) {
    */
   function loadSizes() {
     try {
-      const saved = localStorage.getItem(storageKey)
+      const saved = localStorage.getItem(storageKey);
       if (saved) {
-        const parsedSizes = JSON.parse(saved)
+        const parsedSizes = JSON.parse(saved);
 
         // 验证数据格式
-        if (Array.isArray(parsedSizes) && parsedSizes.length === defaultSizes.length) {
+        if (
+          Array.isArray(parsedSizes) &&
+          parsedSizes.length === defaultSizes.length
+        ) {
           // 验证每个尺寸值是否有效
-          const isValid = parsedSizes.every((size) => typeof size === 'string' && (size.endsWith('%') || size.endsWith('px') || !isNaN(parseFloat(size))))
+          const isValid = parsedSizes.every(
+            (size) =>
+              typeof size === "string" &&
+              (size.endsWith("%") ||
+                size.endsWith("px") ||
+                !isNaN(parseFloat(size)))
+          );
 
           if (isValid) {
-            splitterSizes.value = parsedSizes
-            log('成功加载保存的尺寸:', parsedSizes)
-            return true
+            splitterSizes.value = parsedSizes;
+            log("成功加载保存的尺寸:", parsedSizes);
+            return true;
           } else {
-            warn('保存的尺寸数据格式无效:', parsedSizes)
+            warn("保存的尺寸数据格式无效:", parsedSizes);
           }
         } else {
-          warn('保存的尺寸数组长度不匹配:', parsedSizes, '期望长度:', defaultSizes.length)
+          warn(
+            "保存的尺寸数组长度不匹配:",
+            parsedSizes,
+            "期望长度:",
+            defaultSizes.length
+          );
         }
       } else {
-        log('未找到保存的尺寸，使用默认值:', defaultSizes)
+        log("未找到保存的尺寸，使用默认值:", defaultSizes);
       }
     } catch (error) {
-      warn('加载尺寸失败:', error)
+      warn("加载尺寸失败:", error);
     }
 
     // 如果加载失败，使用默认尺寸
-    splitterSizes.value = [...defaultSizes]
-    return false
+    splitterSizes.value = [...defaultSizes];
+    return false;
   }
 
   /**
@@ -110,17 +130,17 @@ export function useSplitterPersistence(options = {}) {
     try {
       // 验证输入参数
       if (!Array.isArray(sizes) || sizes.length !== defaultSizes.length) {
-        warn('保存尺寸失败: 无效的尺寸数组', sizes)
-        return false
+        warn("保存尺寸失败: 无效的尺寸数组", sizes);
+        return false;
       }
 
-      const sizesToSave = sizes.map((size) => String(size))
-      localStorage.setItem(storageKey, JSON.stringify(sizesToSave))
-      log('成功保存尺寸:', sizesToSave)
-      return true
+      const sizesToSave = sizes.map((size) => String(size));
+      localStorage.setItem(storageKey, JSON.stringify(sizesToSave));
+      log("成功保存尺寸:", sizesToSave);
+      return true;
     } catch (error) {
-      warn('保存尺寸失败:', error)
-      return false
+      warn("保存尺寸失败:", error);
+      return false;
     }
   }
 
@@ -128,9 +148,9 @@ export function useSplitterPersistence(options = {}) {
    * 重置为默认尺寸
    */
   function resetSizes() {
-    splitterSizes.value = [...defaultSizes]
-    saveSizes(defaultSizes)
-    log('重置为默认尺寸:', defaultSizes)
+    splitterSizes.value = [...defaultSizes];
+    saveSizes(defaultSizes);
+    log("重置为默认尺寸:", defaultSizes);
   }
 
   /**
@@ -140,19 +160,19 @@ export function useSplitterPersistence(options = {}) {
    * @returns {string[]} 百分比尺寸数组
    */
   function convertToPercentage(sizes, containerSize) {
-    console.log('convertToPercentage', sizes, containerSize)
+    console.log("convertToPercentage", sizes, containerSize);
     if (!Array.isArray(sizes) || !containerSize || containerSize <= 0) {
-      warn('转换百分比失败: 无效的参数', { sizes, containerSize })
-      return [...defaultSizes]
+      warn("转换百分比失败: 无效的参数", { sizes, containerSize });
+      return [...defaultSizes];
     }
 
     return sizes.map((size) => {
-      if (typeof size === 'number' && size >= 0) {
-        const percentage = ((size / containerSize) * 100).toFixed(2)
-        return `${percentage}%`
+      if (typeof size === "number" && size >= 0) {
+        const percentage = ((size / containerSize) * 100).toFixed(2);
+        return `${percentage}%`;
       }
-      return String(size)
-    })
+      return String(size);
+    });
   }
 
   /**
@@ -160,11 +180,11 @@ export function useSplitterPersistence(options = {}) {
    * @returns {HTMLElement|null} 容器元素
    */
   function getSplitterContainer() {
-    const container = document.querySelector('.tm-splitter')
+    const container = document.querySelector(".tm-splitter");
     if (!container) {
-      warn('未找到分隔器容器元素 (.tm-splitter)')
+      warn("未找到分隔器容器元素 (.tm-splitter)");
     }
-    return container
+    return container;
   }
 
   /**
@@ -173,32 +193,33 @@ export function useSplitterPersistence(options = {}) {
    * @param {number[]} sizes - 新的尺寸数组(像素值)
    */
   function handleResize(index, sizes) {
-    log('面板尺寸变化:', { index, sizes })
+    log("面板尺寸变化:", { index, sizes });
 
-    const container = getSplitterContainer()
+    const container = getSplitterContainer();
     if (!container) {
-      return
+      return;
     }
 
     // 获取容器尺寸
-    const containerSize = layout === 'horizontal' ? container.offsetWidth : container.offsetHeight
+    const containerSize =
+      layout === "horizontal" ? container.offsetWidth : container.offsetHeight;
     if (containerSize <= 0) {
-      warn('容器尺寸无效:', containerSize)
-      return
+      warn("容器尺寸无效:", containerSize);
+      return;
     }
 
     // 转换为百分比
-    const percentageSizes = convertToPercentage(sizes, containerSize)
+    const percentageSizes = convertToPercentage(sizes, containerSize);
 
     // 更新状态
-    splitterSizes.value = percentageSizes
-    log('更新面板尺寸:', percentageSizes)
+    splitterSizes.value = percentageSizes;
+    log("更新面板尺寸:", percentageSizes);
 
     // 防抖保存到localStorage
-    clearTimeout(debounceTimer)
+    clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
-      saveSizes(percentageSizes)
-    }, debounceDelay)
+      saveSizes(percentageSizes);
+    }, debounceDelay);
   }
 
   /**
@@ -206,64 +227,40 @@ export function useSplitterPersistence(options = {}) {
    * 用于主题切换后恢复尺寸状态
    */
   async function reapplySizes() {
-    const currentSizes = [...splitterSizes.value]
+    const currentSizes = [...splitterSizes.value];
 
     // 临时重置为默认值，然后立即恢复
-    splitterSizes.value = [...defaultSizes]
+    splitterSizes.value = [...defaultSizes];
 
     // 使用 nextTick 确保DOM更新后立即恢复，避免视觉闪烁
-    await nextTick()
-    splitterSizes.value = currentSizes
-    log('重新应用尺寸:', currentSizes)
+    await nextTick();
+    splitterSizes.value = currentSizes;
+    log("重新应用尺寸:", currentSizes);
   }
 
   // 监听splitterSizes变化，用于调试
   watch(
     splitterSizes,
     (newSizes) => {
-      log('尺寸状态更新:', newSizes)
+      log("尺寸状态更新:", newSizes);
     },
-    { deep: true },
-  )
-
-  // 监听主题变化
-  if (enableThemeWatch && themeStore) {
-    watch(
-      () => themeStore.theme,
-      async (newTheme, oldTheme) => {
-        if (oldTheme) {
-          log('主题切换:', oldTheme, '->', newTheme, '当前面板尺寸:', splitterSizes.value)
-
-          if (forceReapplyOnTheme) {
-            // 只在需要时强制重新应用尺寸
-            await nextTick()
-            setTimeout(() => {
-              reapplySizes()
-            }, 50)
-          } else {
-            // 简单监听，不做额外操作，避免抖动
-            await nextTick()
-            log('主题切换完成，保持面板尺寸:', splitterSizes.value)
-          }
-        }
-      },
-    )
-  }
+    { deep: true }
+  );
 
   // 组件挂载时自动加载尺寸
   onMounted(() => {
-    log('Hook 初始化, 布局:', layout, '默认尺寸:', defaultSizes)
-    loadSizes()
-  })
+    log("Hook 初始化, 布局:", layout, "默认尺寸:", defaultSizes);
+    loadSizes();
+  });
 
   // 组件卸载时清理定时器
   onUnmounted(() => {
     if (debounceTimer) {
-      clearTimeout(debounceTimer)
-      debounceTimer = null
+      clearTimeout(debounceTimer);
+      debounceTimer = null;
     }
-    log('Hook 清理完成')
-  })
+    log("Hook 清理完成");
+  });
 
   // 返回Hook接口
   return {
@@ -291,7 +288,7 @@ export function useSplitterPersistence(options = {}) {
       enableConsoleLog,
       forceReapplyOnTheme,
     },
-  }
+  };
 }
 
-export default useSplitterPersistence
+export default useSplitterPersistence;
