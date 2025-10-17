@@ -22,7 +22,7 @@ npm install @tourmindai/components
 
 ```javascript
 // main.js
-import "@tourmindai/components/theme";
+import "@tourmindai/components/styles/theme";
 ```
 
 ### 2) 使用组件（样式自动包含）
@@ -32,7 +32,7 @@ import "@tourmindai/components/theme";
 ```javascript
 import { createApp } from "vue";
 import Components from "@tourmindai/components";
-import "@tourmindai/components/theme";
+import "@tourmindai/components/styles/theme";
 
 const app = createApp(App);
 app.use(Components);
@@ -42,7 +42,7 @@ app.mount("#app");
 - 按需引入：
 
 ```javascript
-import "@tourmindai/components/theme"; // 入口处引入一次即可
+import "@tourmindai/components/styles/theme"; // 入口处引入一次即可
 import { TmSplitter, TmSplitterPanel } from "@tourmindai/components";
 ```
 
@@ -68,13 +68,13 @@ import { TmSplitter } from "@tourmindai/components";
 - 使用默认主题（推荐）
 
 ```javascript
-import "@tourmindai/components/theme";
+import "@tourmindai/components/styles/theme";
 ```
 
 - 使用自定义主题（不引入默认主题）
 
 ```javascript
-// import "@tourmindai/components/theme"; // 不引入默认主题
+// import "@tourmindai/components/styles/theme"; // 不引入默认主题
 import "./my-custom-theme.css"; // 提供完整的变量集合
 ```
 
@@ -97,7 +97,7 @@ import "./my-custom-theme.css"; // 提供完整的变量集合
 - 仅组件样式 + 自定义主题（兼容用法）
 
 ```javascript
-import "@tourmindai/components/style"; // 只包含组件样式
+import "@tourmindai/components/styles/components"; // 只包含组件样式
 import "./my-complete-theme.css"; // 自行提供完整主题变量
 ```
 
@@ -117,9 +117,9 @@ npm run build
 
 ## 样式导出清单（来自 package.json#exports）
 
-- `@tourmindai/components/style`：仅组件样式汇总 CSS
+- `@tourmindai/components/styles/components`：仅组件样式汇总 CSS
 - `@tourmindai/components/styles/all`：主题 + 全量组件样式 CSS
-- `@tourmindai/components/theme`：仅主题变量 CSS
+- `@tourmindai/components/styles/theme`：仅主题变量 CSS
 
 ## 许可证
 

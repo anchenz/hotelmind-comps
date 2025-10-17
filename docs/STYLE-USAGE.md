@@ -24,7 +24,7 @@
 
 ```javascript
 // 1) 先引入主题变量（默认主题）
-import "@tourmindai/components/theme";
+import "@tourmindai/components/styles/theme";
 
 // 2) 按需引入并使用组件（样式自动随组件生效）
 import { TmSplitter, TmSplitterPanel } from "@tourmindai/components";
@@ -47,7 +47,7 @@ import { TmSplitter } from "@tourmindai/components";
 - 仅组件样式（由业务侧提供主题变量）
 
 ```javascript
-import "@tourmindai/components/style"; // 只包含组件样式
+import "@tourmindai/components/styles/components"; // 只包含组件样式
 import "./my-complete-theme.css"; // 自行提供完整主题变量
 ```
 
@@ -61,14 +61,14 @@ import "./my-complete-theme.css"; // 自行提供完整主题变量
 - 使用默认主题（推荐）
 
 ```javascript
-import "@tourmindai/components/theme";
+import "@tourmindai/components/styles/theme";
 ```
 
 - 使用自定义主题（不引入默认主题）
 
 ```javascript
 // 不引入默认主题
-// import "@tourmindai/components/theme";
+// import "@tourmindai/components/styles/theme";
 
 // 提供完整变量集合（示例）
 import "./my-theme.css";
@@ -106,7 +106,7 @@ document.documentElement.setAttribute("data-theme", "dark");
 
 ```javascript
 // src/main.js
-import "@tourmindai/components/theme";
+import "@tourmindai/components/styles/theme";
 import { createApp } from "vue";
 import App from "./App.vue";
 
@@ -139,7 +139,7 @@ import { TmSplitter, TmSplitterPanel } from "@tourmindai/components";
 
 - 组件样式未生效？
 
-  - 确认是否引入了默认主题：`@tourmindai/components/theme`。
+  - 确认是否引入了默认主题：`@tourmindai/components/styles/theme`。
   - 若未引入默认主题，请确保自定义主题提供了完整的必需变量集合。
 
 - 样式会污染全局吗？
@@ -149,9 +149,9 @@ import { TmSplitter, TmSplitterPanel } from "@tourmindai/components";
 
 来自 `package.json#exports` 的样式相关入口：
 
-- `@tourmindai/components/style`：仅组件样式汇总 CSS
+- `@tourmindai/components/styles/components`：仅组件样式汇总 CSS
 - `@tourmindai/components/styles/all`：主题 + 全量组件样式 CSS
-- `@tourmindai/components/theme`：仅主题变量 CSS
+- `@tourmindai/components/styles/theme`：仅主题变量 CSS
 
 库入口：
 

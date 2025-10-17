@@ -65,6 +65,23 @@ async function buildStylesIndividually() {
     }
   }
 
+  // 迁移组件样式汇总为 styles/components.css（若存在 dist/style.css）
+  try {
+    const legacyComponentsCss = resolve(__dirname, "../dist/style.css");
+    const componentsCss = resolve(stylesDir, "components.css");
+    if (fs.existsSync(legacyComponentsCss)) {
+      // 确保目标目录存在
+      if (!fs.existsSync(stylesDir)) {
+        fs.mkdirSync(stylesDir, { recursive: true });
+      }
+      fs.copyFileSync(legacyComponentsCss, componentsCss);
+      fs.unlinkSync(legacyComponentsCss);
+      console.log("✓ 组件样式已输出到: styles/components.css");
+    }
+  } catch (err) {
+    console.warn("迁移 components.css 失败（可忽略）：", err?.message || err);
+  }
+
   console.log("所有样式文件构建完成！");
 }
 

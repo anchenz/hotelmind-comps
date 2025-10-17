@@ -23,7 +23,7 @@
 npm install
 npm run dev          # 启动示例站点（本地开发）
 npm run build        # 构建组件库（含库与样式产物）
-npm run build:styles # 单独构建样式入口（all/theme）
+npm run build:styles # 单独构建样式入口（all/theme/components）
 ```
 
 ## 组件开发流程
@@ -126,23 +126,23 @@ export default { install, ...components };
 当前样式体系采用“组件自包含 + 主题变量”的方式：
 
 - 每个组件在其 `index.js` 通过 `import "./style.js"` 自动引入自身样式。
-- 使用组件前，建议引入主题变量（默认主题）：`@tourmindai/components/theme`。
+- 使用组件前，建议引入主题变量（默认主题）：`@tourmindai/components/styles/theme`。
 - 可选一次性引入全量样式：`@tourmindai/components/styles/all`。
-- 兼容用法：仅引入组件样式包 `@tourmindai/components/style`，自行提供主题变量。
+- 仅组件样式（配合自定义主题）：`@tourmindai/components/styles/components`。
 
 对外可用入口（见 `package.json#exports`）：
 
 - `@tourmindai/components`（库入口）
 - `@tourmindai/components/es`、`@tourmindai/components/lib`（分别对应 ES 与 UMD 产物）
-- `@tourmindai/components/style`（仅组件样式汇总 CSS）
+- `@tourmindai/components/styles/components`（仅组件样式汇总 CSS）
 - `@tourmindai/components/styles/all`（主题+全部组件样式）
-- `@tourmindai/components/theme`（仅主题变量 CSS）
+- `@tourmindai/components/styles/theme`（仅主题变量 CSS）
 
 示例（推荐方式）：
 
 ```javascript
 // 引入主题变量（必要，否则变量未定义时样式可能异常）
-import "@tourmindai/components/theme";
+import "@tourmindai/components/styles/theme";
 
 // 然后按需使用组件（样式已自包含）
 import { TmSplitter, TmSplitterPanel } from "@tourmindai/components";
@@ -155,11 +155,10 @@ import "@tourmindai/components/styles/all";
 import { TmSplitter } from "@tourmindai/components";
 ```
 
-兼容/自定义主题：
+仅组件样式 + 自定义主题：
 
 ```javascript
-// 仅引入组件样式包，由业务侧提供完整主题变量
-import "@tourmindai/components/style";
+import "@tourmindai/components/styles/components";
 import "./my-complete-theme.css";
 ```
 
@@ -169,7 +168,7 @@ import "./my-complete-theme.css";
 - 样式构建：脚本 `scripts/build-styles.js` 产出：
   - `dist/styles/all.css`（主题 + 全部组件样式）
   - `dist/styles/theme.css`（仅主题变量）
-- 汇总样式：`dist/style.css`（仅组件样式汇总，用于兼容场景）。
+  - `dist/styles/components.css`（仅组件样式汇总）
 
 目录参考：
 
@@ -177,9 +176,9 @@ import "./my-complete-theme.css";
 dist/
   ├─ tourmindai-components.es.js
   ├─ tourmindai-components.umd.js
-  ├─ style.css
   └─ styles/
       ├─ all.css
+      ├─ components.css
       └─ theme.css
 ```
 
@@ -193,7 +192,7 @@ npm run build # 构建库与样式产物
 建议检查：
 
 - 组件是否随引入自动包含样式。
-- 未引入 `@tourmindai/components/theme` 时，是否明确提示或文档说明需引入主题变量。
+- 未引入 `@tourmindai/components/styles/theme` 时，是否明确提示或文档说明需引入主题变量。
 - 拖拽/交互类组件是否在不同浏览器表现一致。
 
 ## 文档与示例
