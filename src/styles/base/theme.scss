@@ -111,35 +111,6 @@
   --purple-900: #22075e;
   --purple-1000: #120338;
 
-  // 日历颜色变量
-  --calendar-grey-bg-primary: #f5f5f5;
-  --calendar-grey-bg-secondary: #e9eaeb;
-  --calendar-grey-text-color: #a4a7ae;
-  --calendar-grey-shadow: #e9eaeb;
-
-  --calendar-green-bg-primary: #ecfdf3;
-  --calendar-green-bg-secondary: #d1fadf;
-  --calendar-green-text-color: #027a48;
-  --calendar-green-shadow: #a6f4c5;
-
-  --calendar-yellow-bg-primary: #fffaeb;
-  --calendar-yellow-bg-secondary: #fef0c7;
-  --calendar-yellow-text-color: #dc6803;
-  --calendar-yellow-shadow: #fedf89;
-
-  --calendar-red-bg-primary: #fef3f2;
-  --calendar-red-bg-secondary: #fee4e2;
-  --calendar-red-text-color: #b42318;
-  --calendar-red-shadow: #fecdca;
-
-  --calendar-event-bg-primary: #ede9fe;
-  --calendar-event-text-primary: #7008e7;
-  --calendar-event-border-primary: #c4b4ff;
-
-  --calendar-event-holiday-bg-primary: #fff7e6;
-  --calendar-event-holiday-text-primary: #fa8c16;
-  --calendar-event-holiday-border-primary: #ffd591;
-
   --border-radius-base: 4px;
   --border-width-base: 1px;
 
@@ -157,8 +128,8 @@
   --text-disabled: rgba(var(--black-rgb), 0.25); // 禁用状态
 
   // 背景层级体系
-  --bg-body: var(--neutral-0);
-  --bg-body-rgb: var(--white-rgb); // 页面背景RGB值
+  --bg-body: var(--neutral-100);
+  --bg-body-rgb: 250, 250, 250; // 页面背景RGB值
   --bg-surface: var(--neutral-0); // 组件背景
   --bg-overlay: var(--neutral-0); // 浮层背景
   --bg-active: var(--primary-100);
@@ -294,36 +265,6 @@
   --purple-900: #cda8f0;
   --purple-1000: #ebd7fa;
 
-  // 日历颜色变量
-  --calendar-grey-bg-primary: #1d2125;
-  --calendar-grey-bg-secondary: #22272b;
-  --calendar-grey-text-color: #9bb4ca;
-  --calendar-grey-shadow: #4a4a4a;
-  --calendar-grey-shadow: #6a6a6a;
-
-  --calendar-green-bg-primary: #032e15;
-  --calendar-green-bg-secondary: #0d542b;
-  --calendar-green-text-color: #7bf1a8;
-  --calendar-green-shadow: #1c7846;
-
-  --calendar-yellow-bg-primary: #432004;
-  --calendar-yellow-bg-secondary: #733e0a;
-  --calendar-yellow-text-color: #ffdf20;
-  --calendar-yellow-shadow: #8c6f14;
-
-  --calendar-red-bg-primary: #460809;
-  --calendar-red-bg-secondary: #82181a;
-  --calendar-red-text-color: #ffa2a2;
-  --calendar-red-shadow: #92251d;
-
-  --calendar-event-bg-primary: #2f0d68;
-  --calendar-event-text-primary: #c4b4ff;
-  --calendar-event-border-primary: #5d0ec0;
-
-  --calendar-event-holiday-bg-primary: #2b1d11;
-  --calendar-event-holiday-text-primary: #d87a16;
-  --calendar-event-holiday-border-primary: #593815;
-
   // 文字颜色体系
   --text-primary: rgba(var(--white-rgb), 0.88);
   --text-secondary: rgba(var(--white-rgb), 0.65);
@@ -331,7 +272,7 @@
   --text-disabled: rgba(var(--white-rgb), 0.22);
 
   // 背景层级体系
-  --bg-body: var(--neutral-0);
+  --bg-body: var(--neutral-100);
   --bg-body-rgb: 18, 18, 18; // 深色背景RGB值
   --bg-surface: var(--neutral-150); // 卡片背景
   --bg-overlay: var(--neutral-250); // 弹窗背景
