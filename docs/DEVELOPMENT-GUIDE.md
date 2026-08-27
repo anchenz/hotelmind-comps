@@ -11,6 +11,7 @@
 - 测试与验证
 - 文档与示例
 - 版本与发布
+- Hooks 导出
 - 注意事项与检查清单
 
 ## 开发环境准备
@@ -238,6 +239,19 @@ npm publish
 ```
 
 > 包名为作用域包 `@tourmindai/components`，项目已在 `package.json` 配置 `publishConfig.access = public`，可直接 `npm publish`。
+
+## Hooks 导出
+
+- 源码位置：`src/hooks/`
+- 入口聚合：`src/hooks/index.js`
+- 构建输出：`dist/hooks/`
+- 导出路径：`@tourmindai/components/hooks`
+
+使用示例：
+
+```javascript
+import { useSplitterPersistence } from "@tourmindai/components/hooks";
+```
 
 ## 注意事项与检查清单
 

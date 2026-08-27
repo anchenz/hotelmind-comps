@@ -101,6 +101,14 @@ import "@tourmindai/components/styles/components"; // 只包含组件样式
 import "./my-complete-theme.css"; // 自行提供完整主题变量
 ```
 
+## Hooks
+
+可以从子路径导入内置 Hooks：
+
+```javascript
+import { useSplitterPersistence } from "@tourmindai/components/hooks";
+```
+
 ## 组件列表
 
 - TmSplitter - 分隔面板组件
@@ -120,6 +128,7 @@ npm run build
 - `@tourmindai/components/styles/components`：仅组件样式汇总 CSS
 - `@tourmindai/components/styles/all`：主题 + 全量组件样式 CSS
 - `@tourmindai/components/styles/theme`：仅主题变量 CSS
+- `@tourmindai/components/hooks`：Hooks 入口（ES 模块）
 
 ## 许可证
 

@@ -1,6 +1,6 @@
 {
   "name": "@tourmindai/components",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "TourmindAI Components",
   "type": "module",
   "main": "dist/tourmindai-components.umd.js",
@@ -16,7 +16,9 @@
 
     "./styles/components": "./dist/styles/components.css",
     "./styles/all": "./dist/styles/all.css",
-    "./styles/theme": "./dist/styles/theme.css"
+    "./styles/theme": "./dist/styles/theme.css",
+
+    "./hooks": "./dist/hooks/index.js"
   },
   "files": [
     "dist"
@@ -25,8 +27,9 @@
     "access": "public"
   },
   "scripts": {
-    "build": "vite build && npm run build:styles",
+    "build": "vite build && npm run build:styles && npm run build:hooks",
     "build:styles": "node scripts/build-styles.js",
+    "build:hooks": "node scripts/build-hooks.js",
     "dev": "vite",
     "dev:lib": "vite build --watch",
     "prepublishOnly": "npm run build"
